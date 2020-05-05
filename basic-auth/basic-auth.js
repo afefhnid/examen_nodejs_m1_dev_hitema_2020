@@ -2,7 +2,8 @@ const crypto = require("crypto");
 const HttpStatus = require("http-status-codes");
 function sha1Encode(data) {
   // To be implemented!
-  return crypto.createHash("sha1").update(data).digest("hex");
+  const crypto = crypto.createHash("sha1").update(data).digest("hex");
+  return crypto;
 }
 
 module.exports.digestAuth = (request, response, next) => {

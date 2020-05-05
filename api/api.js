@@ -6,7 +6,7 @@ const app = express();
 const v1 = express.Router();
 const basicAuth = require("../basic-auth/basic-auth").basicAuth;
 // To be implemented!
-
+const HttpStatus = require("http-status-codes");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/api/v1", v1);
@@ -16,12 +16,12 @@ v1.put("/people/:id", basicAuth, async (request, response) => {
   const people = request.body;
   try {
     const result = await peopleService.updatePeople(people, id);
-    if (!result.isFind) return response.sendStatus(404);
+    if (!result.isFind) return response.sendStatus(HttpStatus.NOT_FOUND);
 
-    response.sendStatus(200);
+    return response.sendStatus(HttpStatus.NOT_FOUND);
   } catch (e) {
     console.log("error occurs : ", e);
-    response.sendStatus(400);
+    return response.sendStatus(HttpStatus.NOT_FOUND);
   }
 });
 

@@ -34,8 +34,10 @@ module.exports = class PeopleService {
   getPeople(filters) {
     // To be implemented!
     console.log(this.peoples);
-    if (filters) {
+    if (!filters) {
       return this.peoples;
+    } else {
+      return this.peoples.filter((pepole) => pepole.gender === filters);
     }
   }
 };
