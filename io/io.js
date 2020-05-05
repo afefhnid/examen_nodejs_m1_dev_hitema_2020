@@ -5,12 +5,12 @@ module.exports.decodeHexFileContent = (filePath) => {
       if (err) {
         reject(err);
       }
-      const buf = Buffer.from(data, "ascii");
-      var hexvalue = buf.toString("hex");
+      const buf = Buffer.from(data, "hex");
+      var res = buf.toString("utf8");
 
       console.log();
 
-      resolve(hexvalue);
+      resolve(res);
     });
   });
 };
