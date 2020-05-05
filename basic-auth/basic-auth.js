@@ -2,8 +2,7 @@ const crypto = require("crypto");
 const HttpStatus = require("http-status-codes");
 function sha1Encode(data) {
   // To be implemented!
-  const crypto = crypto.createHash("sha1").update(data).digest("hex");
-  return crypto;
+  return crypto.createHash("sha1").update(data).digest("hex");
 }
 
 module.exports.digestAuth = (request, response, next) => {
@@ -19,11 +18,3 @@ module.exports.digestAuth = (request, response, next) => {
   // si pas authentifiÃ©
   isValid ? next() : response.sendStatus(HttpStatus.UNAUTHORIZED);
 };
-
-//var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
-//hash.update(password);
-//var value = hash.digest('hex');
-//return {
-//  salt:salt,
-//passwordHash:value
-//};
