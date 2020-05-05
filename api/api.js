@@ -14,13 +14,11 @@ app.use("/api/v1", v1);
 v1.put("/people/:id", basicAuth, async (request, response) => {
   const id = request.params.id;
   const people = request.body;
-  // if (!MessageService.isMessageValid(people)) return response.sendStatus(400);
-
   try {
     const result = await peopleService.updatePeople(people, id);
     if (!result.isFind) return response.sendStatus(404);
 
-    result.isModified ? response.sendStatus(200) : response.sendStatus(304);
+    response.sendStatus(200);
   } catch (e) {
     console.log("error occurs : ", e);
     response.sendStatus(400);
@@ -28,6 +26,11 @@ v1.put("/people/:id", basicAuth, async (request, response) => {
 });
 
 v1.get("/people/:filters", async (request, response) => {
+  const filters = request.params.filters;
+  const people = await peopleService.getPeople(filters);
+  response.send(people);
+});
+v1.get("/people", async (request, response) => {
   const filters = request.params.filters;
   const people = await peopleService.getPeople(filters);
   response.send(people);

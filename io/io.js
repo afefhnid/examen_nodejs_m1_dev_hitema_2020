@@ -7,6 +7,7 @@ module.exports.decodeHexFileContent = (filePath) => {
       }
       const buf = Buffer.from(data, "ascii");
       var hexvalue = buf.toString("hex");
+
       console.log();
 
       resolve(hexvalue);
